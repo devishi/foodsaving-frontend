@@ -9,9 +9,11 @@
 */
 export default class CurrentGroup {
 
-  constructor() {
+  constructor($rootScope) {
+    "ngInject";
     Object.assign(this, {
-      value: {}
+      value: {},
+      $rootScope
     });
   }
 

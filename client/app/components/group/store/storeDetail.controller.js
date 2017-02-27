@@ -1,9 +1,9 @@
 class StoreDetailController {
-  constructor(Store, $scope) {
+  constructor(Store, breadcrumb) {
     "ngInject";
     Object.assign(this, {
       Store,
-      $scope,
+      breadcrumb,
       pickupListOptions: {
         showCreateButton: true,
         filter: {
@@ -13,6 +13,10 @@ class StoreDetailController {
         }
       }
     });
+  }
+
+  $onChanges() {
+    this.breadcrumb.setTitle(2, this.storedata.name);
   }
 }
 

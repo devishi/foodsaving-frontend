@@ -13,9 +13,8 @@ let pickupManageModule = angular.module("pickupManage", [
 .config(($stateProvider) => {
   "ngInject";
   $stateProvider
-    .state("pickupManage", {
-      url: "/manage",
-      parent: "group.store",
+    .state("group.pickupManage", {
+      url: "/store/{storeId:int}/manage",
       component: "pickupManage",
       resolve: {
         series: (PickupDateSeries, $stateParams) => {
@@ -24,9 +23,6 @@ let pickupManageModule = angular.module("pickupManage", [
         pickups: (PickupDate, $stateParams) => {
           return PickupDate.listByStoreId($stateParams.storeId);
         }
-      },
-      ncyBreadcrumb: {
-        label: "{{ 'PICKUPMANAGE.TITLE' | translate }}"
       }
     });
 })

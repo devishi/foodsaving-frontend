@@ -23,20 +23,13 @@ let storeDetailModule = angular.module("storeDetail", [
 .config(($stateProvider) => {
   "ngInject";
   $stateProvider
-    .state("group.store.storeDetail", {
-      component: "storeDetail"
-    })
     .state("group.store", {
       url: "/store/{storeId:int}",
-      redirectTo: "group.store.storeDetail",
-      template: "<ui-view></ui-view>",
+      component: "storeDetail",
       resolve: {
         storedata: (Store, $stateParams) => {
           return Store.get($stateParams.storeId);
         }
-      },
-      ncyBreadcrumb: {
-        label: "{{$$childHead.$ctrl.storedata.name}}"
       }
     });
 })

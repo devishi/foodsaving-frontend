@@ -1,10 +1,15 @@
 class GroupController {
-  constructor($state, $mdMedia) {
+  constructor($state, $mdMedia, breadcrumb) {
     "ngInject";
     Object.assign(this, {
       $state,
-      $mdMedia
+      $mdMedia,
+      breadcrumb
     });
+  }
+
+  $onChanges() {
+    this.breadcrumb.setTitle(1, this.groupData.name);
   }
 }
 

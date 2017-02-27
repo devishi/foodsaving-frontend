@@ -26,8 +26,6 @@ import "angular-material/angular-material.css";
 import "./fonts/fonts";
 import "./app.styl";
 
-import breadcrumbTemplate from "./templates/breadcrumbs.html";
-
 import mainLayout from "./layouts/main.html";
 import splashLayout from "./layouts/splash.html";
 import logo from "./components/_logo/logo";
@@ -72,9 +70,21 @@ angular.module("app", [
   "ngInject";
   cfpLoadingBarProvider.includeSpinner = false;
 })
-.config(($breadcrumbProvider) => {
+.directive("titleText", (breadcrumb, $rootScope) => {
   "ngInject";
-  $breadcrumbProvider.setOptions({
-    template: breadcrumbTemplate
-  });
+  return {
+    restrict: "A",
+    scope: {},
+    template: "{{titleText}}",
+    compile: () => {
+      return {
+        post: (scope) => {
+          scope.titleText = "(Loading…)";
+          $rootScope.$on("titleTextChange", () => {
+            scope.titleText = breadcrumb.title;
+          });
+        }
+      };
+    }
+  };
 });

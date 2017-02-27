@@ -22,6 +22,8 @@ let groupPageModule = angular.module("group", [
   storeList
 ])
 
+.component("group", groupComponent)
+
 .config(($stateProvider, hookProvider) => {
   "ngInject";
   $stateProvider
@@ -40,15 +42,10 @@ let groupPageModule = angular.module("group", [
             return group;
           });
         }
-      },
-      ncyBreadcrumb: {
-        label: "{{$ctrl.groupData.name}}"
       }
     });
   hookProvider.setup("group", { authenticated: true, anonymous: "login" });
 })
-
-.component("group", groupComponent)
 
 .name;
 

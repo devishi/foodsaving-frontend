@@ -1,10 +1,11 @@
 class PickupManageController {
-  constructor($locale) {
+  constructor($locale, $translate, breadcrumb) {
     "ngInject";
     Object.assign(this, {
       $locale,
       days: {}
     });
+    $translate("PICKUPMANAGE.TITLE").then((text) => breadcrumb.setTitle(3, text));
   }
 
   $onInit() {
